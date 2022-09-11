@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<Configuration xmlns:log4j="http://jakarta.apache.org/log4j/"> 
+	<!-- Appenders --> 
+	<Appenders> 
+	<Console name="console" target="SYSTEM_OUT">
+		<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+	</Console> 
+	</Appenders>
+	
+	 <!-- Application Loggers -->
+	 <Loggers> 
+	   	<Logger name="com.springbook.biz" level="INFO" additivity="false">
+	    	<AppenderRef ref="console" />
+	    </Logger> 
+	    <Logger name="org.springframework.core" level="INFO" additivity="false"> 
+	    	<AppenderRef ref="console" /> 
+	    </Logger> 
+	    <Logger name="org.springframework.beans" level="INFO" additivity="false"> 
+	    	<AppenderRef ref="console" /> 
+	    </Logger> 
+	    <Logger name="org.springframework.context" level="DEBUG" additivity="false"> 
+	   		<AppenderRef ref="console" /> 
+	    </Logger>
+	 	<Logger name="org.springframework.web" level="INFO" additivity="false"> 
+	    	<AppenderRef ref="console" /> 
+	    </Logger>
+	    <Logger name="org.springframework" level="INFO" additivity="false"> 
+	    	<AppenderRef ref="console" /> 
+	    </Logger> 
+	     
+	    <Logger name="org.practice" level="INFO" additivity="false"> 
+	    	<AppenderRef ref="console" /> 
+	    </Logger> 
+	    
+	      <Logger name="org.practice.mapper" level="TRACE" additivity="false"> 
+	    	<AppenderRef ref="console" /> 
+	   	  </Logger> 
+	    
+	    <root level="INFO"  additivity="false"> 
+	    	<AppenderRef ref="console" /> 
+	    </root>
+	 </Loggers>
+</Configuration>

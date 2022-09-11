@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.min.mapper.BoardAttachMapper">
+	
+	<insert id="insert">
+	insert into attach (uuid, uploadPath, fileName, filetype, num)
+	values(#{uuid}, #{uploadPath}, #{fileName} , #{filetype}, #{num})
+	</insert>
+	
+	<delete id="delete">
+	delete from attach where uuid = #{uuid}
+	</delete>
+	
+	<select id="getattachlist" resultType="com.min.domain.AttachVO">
+	select * from attach where num = #{num}
+	</select>
+	
+	<delete id="deleteAll">
+	delete from attach where num = #{num}
+	</delete>
+
+</mapper>

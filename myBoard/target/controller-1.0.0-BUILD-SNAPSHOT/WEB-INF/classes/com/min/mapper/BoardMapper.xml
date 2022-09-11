@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.min.mapper.BoardMapper">
+	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="num">
+	insert into board( title, content, user) values(#{title}, #{content}, #{user})
+	</insert>
+	
+	<update id="update">
+	update board set title=#{title}, content=#{content}, updatedate = now()
+	where num = #{num}
+	</update>
+	
+	<delete id="delete">
+	delete from board where num=#{num}
+	</delete>
+
+	<select id="getlist" resultType="com.min.domain.BoardVO">
+	select * from board order by num desc limit #{skip}, #{amount}
+	</select>
+	
+	<select id="getCount" resultType="int">
+	select count(num) from board where num > 0;
+	</select>
+	
+	<select id="read" resultType="com.min.domain.BoardVO">
+	select * from board where num=#{num}
+	</select>
+	
+	<update id="viewCount">
+	update board set viewcnt = viewcnt +1 where num = #{num}
+	</update>
+	
+	<select id="searchList" resultType="com.min.domain.BoardVO">
+	<![CDATA[
+
+		select * from board]]>
+		
+		<include refid="searchoption"></include>
+		
+		order by num desc
+	</select>
+	
+	<sql id="searchoption">
+		<where>
+			<foreach collection="typeArr" item="type" open="(" close=")" separator="OR">
+				<if test="type =='T'.toString()">
+					title like CONCAT('%', #{keyword}, '%')
+				</if>
+				
+				<if test="type =='TC'.toString()">
+					title like concat('%',#{keyword},'%') or content like concat('%',#{keyword},'%')
+				</if>
+				
+				<if test="type =='C'.toString()">
+					content like concat('%',#{keyword},'%')
+				</if>
+				
+				<if test="type =='U'.toString()">
+					user like concat('%',#{keyword},'%')
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	
+	<select id="gettotalCountSearch" resultType="int">
+		select count(num) from board
+		<include refid="searchoption"></include>
+		and num >0 
+	</select>
+	
+	<select id="getreplycnt">
+	select replycnt from board where num = #{num}
+	</select>
+	
+	<update id="updateReplyCnt">
+	update board set replycnt = replycnt+ #{amount} where num = #{num}
+	</update>
+</mapper>
