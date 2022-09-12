@@ -114,6 +114,7 @@
     <input type='hidden' id='num' name='num' value='<c:out value="${list.num}"/>'>
     <input type='hidden' name='pageNum' value='<c:out value="${search.pageNum}"/>'>
     <input type='hidden' name='amount' value='<c:out value="${search.amount}"/>'>
+    <input type="hidden" name="sort" value="${sort}">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
     
@@ -415,11 +416,11 @@ $(document).ready(function() {
    var formObj = $("#form");
     
 	document.querySelector('#list').addEventListener("click", function(e) {
-		self.location = `/board/list?pageNum=${search.pageNum}&amount=${search.amount}`;
+		self.location = `/board/list?pageNum=${search.pageNum}&amount=${search.amount}&sort=${sort}`;
 	},false)
 	
 	document.querySelector('#modify21').addEventListener("click", function(e) {
-		self.location = `/board/modify?pageNum=${search.pageNum}&amount=${search.amount}&num=${list.num}`;
+		self.location = `/board/modify?pageNum=${search.pageNum}&amount=${search.amount}&sort=${sort}&num=${list.num}`;
 	},false)
 	
 	document.querySelector('#remove').addEventListener("click", function(e) {

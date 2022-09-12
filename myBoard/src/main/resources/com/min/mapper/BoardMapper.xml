@@ -18,8 +18,32 @@
 	</delete>
 
 	<select id="getlist" resultType="com.min.domain.BoardVO">
-	select * from board order by num desc limit #{skip}, #{amount}
+	select * from board <include refid="sort"/> limit #{skip}, #{amount}
 	</select>
+	
+	<sql id="sort">
+	
+	<if test="sort == null">
+	ORDER BY num DESC
+	</if>
+	
+	<if test="sort == 'num'">
+	ORDER BY num DESC
+	</if>
+
+	<if test="sort == 'regdate'">
+	ORDER BY regdate DESC
+	</if>
+	
+	<if test="sort == 'updatedate'">
+	ORDER BY updatedate DESC
+	</if>
+	
+	<if test="sort == 'viewcount'">
+	order by viewcnt desc
+	</if>
+	
+	</sql>
 	
 	<select id="getCount" resultType="int">
 	select count(num) from board where num > 0;
@@ -78,4 +102,5 @@
 	<update id="updateReplyCnt">
 	update board set replycnt = replycnt+ #{amount} where num = #{num}
 	</update>
+	
 </mapper>

@@ -10,6 +10,7 @@
 	<input type='hidden' name='pageNum' value='<c:out value="${search.pageNum}"/>'>
     <input type='hidden' name='amount' value='<c:out value="${search.amount}"/>'>
     <input type='hidden' name='num' value='<c:out value="${list.num}"/>'>
+    <input type="hidden" name="sort" value="${sort}">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     
     

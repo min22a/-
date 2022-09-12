@@ -5,15 +5,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="../header/header.jsp"%>
 
-<table class="table mt-3 bg-light bg-opacity-75">
+<table class="table mt-3 bg-light bg-opacity-75" id="mintable">
 <thead>
   <tr>
-  	<th scope="col">번호</th>
+  	<th scope="col" onclick="location.href='/board/list?pageNum=${pager.search.pageNum}&amount=${pager.search.amount}&sort=num'">번호</th>
   	<th scope="col">제목</th>
   	<th scope="col">작성자</th>
- 	<th scope="col">작성일</th>
- 	<th scope="col">수정일</th>
-  	<th scope="col">조회수</th>
+ 	<th scope="col" onclick="location.href='/board/list?pageNum=${pager.search.pageNum}&amount=${pager.search.amount}&sort=regdate'">작성일</th>
+ 	<th scope="col" onclick="location.href='/board/list?pageNum=${pager.search.pageNum}&amount=${pager.search.amount}&sort=updatedate'">수정일</th>
+  	<th scope="col" onclick="location.href='/board/list?pageNum=${pager.search.pageNum}&amount=${pager.search.amount}&sort=viewcount'">조회수</th>
   </tr>
   </thead>
   <tbody>
@@ -58,6 +58,7 @@
     <form id="actionForm" action="/board/list" method="get">
     	<input type="hidden" name="pageNum" value="${pager.search.pageNum}">
     	<input type="hidden" name="amount" value="${pager.search.amount}">
+    	<input type="hidden" name="sort" value="${pager.search.sort}">
     </form>
     
     
@@ -84,6 +85,7 @@
 		actionForm.submit();
 	});
     </script>
+      
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>

@@ -17,10 +17,13 @@ public class Search {
 	
 	private int skip;
 	
+	private String sort;
+	
 	public Search(int pageNum, int amount) {
 		this.pageNum=pageNum;
 		
 		this.amount=amount;
+	
 	}
 	public Search() {
 		this(1,10);

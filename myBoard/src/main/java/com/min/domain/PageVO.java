@@ -17,11 +17,13 @@ public class PageVO {
 	private boolean next;
 	
 	private Search search;
+	private String sort = "";
 	
-	public PageVO(Search search, int total) {
+	public PageVO(Search search, int total, String sort) {
 		this.search = search;
 		this.total = total;
-		
+		this.sort = sort;
+	
 		this.last = (int)(Math.ceil(search.getPageNum() / 5.0)) *5;
 		
 		this.start = this.last - 4;

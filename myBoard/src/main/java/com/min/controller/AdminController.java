@@ -31,7 +31,7 @@ public class AdminController {
 	private ReplyService repservice;
 	
 	@GetMapping("/admin")
-	public void listController(Model model, Search search) {
+	public void listController(Model model, Search search,String sort) {
 		
 		log.info("===========admin page==========");
 		
@@ -40,7 +40,8 @@ public class AdminController {
 		int total = service.getTotal(search);
 		
 		model.addAttribute("list", list);
-		model.addAttribute("pager", new PageVO(search, total));
+		
+		model.addAttribute("pager", new PageVO(search, total, sort));
 		
 	}
 	

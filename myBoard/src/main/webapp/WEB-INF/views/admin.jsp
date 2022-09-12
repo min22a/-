@@ -9,12 +9,13 @@
 <thead>
   <tr>
   	<th scope="col"><input class="form-check-inputall" type="checkbox" 
-  value="" id='flexCheckDefaultall'/>번호</th>
+  	value="" id='flexCheckDefaultall'
+  	onclick="location.href='/admin?pageNum=${pager.search.pageNum}&amount=${pager.search.amount}&sort=num'"/>번호</th>
   	<th scope="col">제목</th>
   	<th scope="col">작성자</th>
- 	<th scope="col">작성일</th>
- 	<th scope="col">수정일</th>
-  	<th scope="col">조회수</th>
+ 	<th scope="col" onclick="location.href='/admin?pageNum=${pager.search.pageNum}&amount=${pager.search.amount}&sort=regdate'">작성일</th>
+ 	<th scope="col" onclick="location.href='/admin?pageNum=${pager.search.pageNum}&amount=${pager.search.amount}&sort=updatedate'">수정일</th>
+  	<th scope="col" onclick="location.href='/admin?pageNum=${pager.search.pageNum}&amount=${pager.search.amount}&sort=viewcount'">조회수</th>
   </tr>
   </thead>
   <tbody>
@@ -63,6 +64,7 @@
     <form id="actionForm" action="/admin" method="get">
     	<input type="hidden" name="pageNum" value="${pager.search.pageNum}">
     	<input type="hidden" name="amount" value="${pager.search.amount}">
+    	<input type="hidden" name="sort" value="${pager.search.sort}">
     </form>
     
     

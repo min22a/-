@@ -67,7 +67,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/list")
-	public void listController(Model model, Search search) {
+	public void listController(Model model, Search search, String sort) {
 		
 		log.info("===========list page==========");
 		
@@ -76,13 +76,14 @@ public class BoardController {
 		int total = service.getTotal(search);
 		
 		model.addAttribute("list", list);
-		model.addAttribute("pager", new PageVO(search, total));
+		model.addAttribute("pager", new PageVO(search, total, sort));
 		
 	}
 	
 	@GetMapping("/read")
 	public void readController(@RequestParam("num") Long num,
-			Model model, @ModelAttribute("search")Search search ) {
+			Model model, @ModelAttribute("search")Search search, 
+			@ModelAttribute("sort")String sort) {
 		log.info("===========read page==========");
 		
 		BoardVO list = service.get(num);
@@ -91,7 +92,8 @@ public class BoardController {
 	
 	@GetMapping("/modify")
 	public void modiController(@RequestParam("num") Long num, BoardVO vo,
-			Model model,@ModelAttribute("search")Search search ) {
+			Model model,@ModelAttribute("search")Search search,
+			@ModelAttribute("sort")String sort) {
 		log.info("===========modifyget page==========");
 		
 		BoardVO list = service.get(num);
@@ -160,7 +162,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/search")
-	public void searchController(Model model, Search search) {
+	public void searchController(Model model, Search search, String sort) {
 		log.info("===========search page==========");
 		
 		List<BoardVO> list = service.getsearchlist(search);
@@ -168,7 +170,7 @@ public class BoardController {
 		int total = service.getSearchTotal(search);
 		
 		model.addAttribute("list", list);
-		model.addAttribute("pager", new PageVO(search, total));
+		model.addAttribute("pager", new PageVO(search, total, sort));
 	}
 	
 	//첨부파일 들고오기
